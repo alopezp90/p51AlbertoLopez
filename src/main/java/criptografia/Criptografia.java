@@ -53,41 +53,58 @@ public class Criptografia {
         } while (repite);
     }
 
-    //Este método cifra una frase palabra a palabra. Primero fracciona por palabras
-    //y luego por cada una: reordena, pone letras a principio y final, y
-    //finalemnte sustituye vocales por numeros
+    /**
+     * Metodo que cifra una frase palabra a palabra. Primero fracciona por
+     * palabras y luego va llamando a los metodos necesarios para: reordenar,
+     * poner letras a principio y final, y finalemnte sustituir vocales por
+     * numeros
+     *
+     * @param frase
+     * @return
+     */
     public static String cifra(String frase) {
         String cifrado = "";
         String[] palabras = frase.split(" ");
         for (String palabra : palabras) {
-            System.out.println("La palabra "+ palabra);
+            System.out.println("La palabra " + palabra);
             palabra = reordena(palabra);
             palabra = masLetras(palabra);
             palabra = sustituye(palabra);
-            cifrado = cifrado + palabra + " "; //Concatena las palabras con un espacio despues de cada una
+            cifrado = cifrado + palabra + " ";//Concatena las palabras con un espacio despues de cada una
         }
-        cifrado = cifrado.substring(0, cifrado.length() - 1);   //Quita último espacio al final de la frase cifrada
+        cifrado = cifrado.substring(0, cifrado.length() - 1);//Quita último espacio al final de la frase cifrada
         return cifrado;
     }
 
-    //Este método descifra una frase palabra a palabra. Primero fracciona por palabras
-    //y luego porcada una: quita primera y última letra/numero, sustituye numeros por letras
-    //y finalmente reordena las letras
+    /**
+     * Metodo que descifra una frase palabra a palabra. Primero fracciona por
+     * palabras y luego va llamando a los metodos necesarios para: quitar primera
+     * y ultima letra/numero, sustituir numeros por letras y finalmente reordenar
+     * las letras
+     *
+     * @param cifrado String a descifrar
+     * @return String descifrado
+     */
     public static String descifra(String cifrado) {
         String frase = "";
         String[] palabras = cifrado.split(" ");
         for (String palabra : palabras) {
-            System.out.println("La palabra "+ palabra);
+            System.out.println("La palabra " + palabra);
             palabra = menosLetras(palabra);
             palabra = sustituye(palabra);
             palabra = reordena(palabra);
-            frase = frase + palabra + " "; //Concatena las palabras con un espacio despues de cada una
+            frase = frase + palabra + " ";//Concatena las palabras con un espacio despues de cada una
         }
-        frase = frase.substring(0, frase.length() - 1);     //Quita último espacio al final de la frase cifrada     
+        frase = frase.substring(0, frase.length() - 1);//Quita último espacio al final de la frase cifrada
         return frase;
     }
 
-    //Este método reordena las letras de una palabra en orden inverso
+    /**
+     * Metodo que invierte un String. Ademas muestra el estado final en consola.
+     *
+     * @param palabra String a invertir
+     * @return String ya invertido
+     */
     public static String reordena(String palabra) {
         String tmp = "";
         for (int i = 0; i < palabra.length(); i++) {
@@ -97,7 +114,13 @@ public class Criptografia {
         return tmp;
     }
 
-    //Este método cambia las vocales por su correspondiente número y viceversa
+    /**
+     * Metodo que sustituye vocales por numero y numeros por vocales. Ademas
+     * muestra el estado final en consola.
+     *
+     * @param palabra String a modificar
+     * @return String con sustitucion hecha
+     */
     public static String sustituye(String palabra) {
         String tmp = "";
         for (int i = 0; i < palabra.length(); i++) {
@@ -140,7 +163,13 @@ public class Criptografia {
         return tmp;
     }
 
-    //Este método pone letras aleatorias antes y despues de cada palabra
+    /**
+     * Metodo que pone letras aleatorias antes y despues de cada palabra. Ademas
+     * muestra el estado final en consola.
+     *
+     * @param palabra String a modificar
+     * @return String con las letras aleatorias incluidas
+     */
     public static String masLetras(String palabra) {
         Random random = new Random();
         String tmp = (char) (random.nextInt(26) + 'A') + palabra + (char) (random.nextInt(26) + 'A');
@@ -148,7 +177,13 @@ public class Criptografia {
         return tmp;
     }
 
-    //Este método quita la primera y última letra de una palabra
+    /**
+     * Metodo que quita la primera y ultima letra de una palabra. Ademas muestra
+     * el estado final en consola.
+     *
+     * @param palabra String a modificar
+     * @return String sin la primera y la ultima letra
+     */
     public static String menosLetras(String palabra) {
         String tmp = "";
         for (int i = 1; i < palabra.length() - 1; i++) {
